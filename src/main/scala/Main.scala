@@ -1,3 +1,4 @@
-object Main extends App {
-    println("Hello, world!")
+import scalafx.application.JFXApp
+
+object Main extends JFXApp {
 }
