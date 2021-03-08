@@ -1,0 +1,5 @@
+SIMPLE 3D VIEWER
+    Erika Marttinen 885665 - (Computer Science) Tietotekniikka 1st year
+    date (to be added)
+
+NOTE: this will contain my document's notes

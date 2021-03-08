@@ -1,0 +1,6 @@
+PROGRESS
+
+WEEKS 9-10
+    - Created project + set up Git
+    - Simple window + animation in ScalaFx
+    -
