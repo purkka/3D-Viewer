@@ -1,0 +1,12 @@
+PLAN DEMO NOTES
+
+- light
+    - multiple light sources
+    - standard color (that differs from the background color)
+
+- camera
+    - jumping between pre-set points
+    - moving along a surface + rotating
+
+- testing
+    - lines before implementing surfaces
