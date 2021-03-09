@@ -6,3 +6,8 @@ WEEKS 9-10
     - Matrix4 and Vec4 -classes
         + simple arithmetic operations
         + affine transformation matrices
+    - Quaternion (for rotations)
+
+    problems:
+
+    timetable:
