@@ -7,7 +7,11 @@ WEEKS 9-10
         + simple arithmetic operations
         + affine transformation matrices
     - Quaternion (for rotations)
+    - Add rotating triangle using my matrix-libraries
 
     problems:
+    - the scene won't take values "width" and "height" as parameters
+    - testing with points and lines proved unnecessary
 
     timetable:
+    - on time
