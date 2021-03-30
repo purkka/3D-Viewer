@@ -68,7 +68,7 @@ object Matrix4 {
             1.0 / (aspectRatio * tanHalfFov), 0,                0,  0,
             0,                                1.0 / tanHalfFov, 0,  0,
             0,                                0,                1,  0,
-            0,                                0,                1,  0,
+            0,                                0,                -1,  0,
         )
     }
 }

@@ -28,7 +28,10 @@ class Object(vertices: Vector[Vec4], indices: Vector[Tri]) {
         polygons
     }
 
-    def validateIndices(): Unit = assert(indices.forall(_.length == 3), "All indices must be of length 3")
+    def validateIndices(): Unit = {
+        assert(indices.forall(_.length == 3), "All indices must be of length 3")
+        assert(indices.forall(_.forall(i => 0 <= i && i < vertices.length)), "Indices must point to existing triangles")
+    }
     validateIndices()
 }
 

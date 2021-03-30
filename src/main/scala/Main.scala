@@ -4,7 +4,7 @@ import scalafx.animation.AnimationTimer
 import scalafx.scene.shape._
 import scalafx.scene.paint._
 import graphics._
-import graphics.mesh.Cube
+import graphics.mesh.{Cube, ObjParser}
 
 object Main extends JFXApp {
     // for the object
@@ -15,6 +15,8 @@ object Main extends JFXApp {
 
     // screen space transform function
     def transform(w: Vec4): (N, N) = (0.5 * width * (w.x + 1.0), 0.5 * height * (1.0 - w.y))
+
+    val obj: mesh.Object = ObjParser.loadObject("resources/donut.obj")
 
     // for the animation
     stage = new JFXApp.PrimaryStage {
@@ -33,13 +35,15 @@ object Main extends JFXApp {
 
                     val m =
                         Matrix4.newPerspective(width.toDouble / height.toDouble, toRadians(70)) *
-                        Matrix4.newTranslation(Vec4(0 ,0, -3)) *
+                        Matrix4.newTranslation(Vec4(0 , 0, -3)) *
 //                      Matrix4.newTranslation(Vec4(Main.width / 2, Main.height / 2, 0))
-                      new Quaternion(Vec4(0, 1, 0), angle).toRotationMatrix *
+//                      new Quaternion(Vec4(0, 1, 0), angle).toRotationMatrix *
+                      new Quaternion(Vec4(0, 1, 1), 0.9 * angle).toRotationMatrix
+//                      new Quaternion(Vec4(1, 0, 0), 1.2 * angle).toRotationMatrix
 //                      Matrix4.newScaling(Vec4(200, 200, 0)) *
-                      Matrix4.newTranslation(Vec4(0, 0, -1))
+//                      Matrix4.newTranslation(Vec4(0, 0, -0.5))
 
-                    content = Cube.render(m, transform)
+                    content = obj.render(m, transform)
 
                 }
                 lastTime = t
