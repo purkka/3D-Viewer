@@ -15,3 +15,35 @@ WEEKS 9-10
 
     timetable:
     - on time
+
+
+WEEKS 11-12
+    - Perspective full implementation + fix
+    - Rendering has been moved to the Object -class
+    - Cube-object (hardcoded version for testing)
+    - OBJ cube + monkey + donut imported from Blender (see "resources")
+    - Added file parser
+        - Is still missing error handling
+    - Minor other additions + improvements (Vec4 asserts ect.)
+    - Random transparent color implementation for debugging
+
+    problems:
+    - mutable collections necessary -> using ArrayBuffers in certain places (performance reasons)
+    - decided to remove the "Point" class
+        -> provides nothing necessary and makes whole build too complicated
+    - parsing looks a bit different than initially planned, the core idea is still roughly the same
+    - "cheating" with the colors:
+        - the rendering does not care about the z-axis -> the wrong things are on top
+            - this will be later fixed with the surfaces normal-vector implementation and rendering only the necessary
+              triangles (normal vector facing the camera)
+        - is now using 50% transparent "randomly" chosen colors (see "Object -> render" and "AllColors.java")
+        - this transparency-solution allows me to see more clearly what exactly is going on
+    - UML's "Mesh" and "Object" are currently one class, might be split later
+    - negative coordinates cause wrong rendering (when behind the camera)
+        -> must implement near clipping plane in the future
+
+    timetable:
+    - changed the order of implementation (obj reader before point light)
+        - While I was working on the project, I realized that this new order seems more natural. The removal of
+          of a separate "Point" -class also influenced this decision.
+    - made progress, even though my scheduling hasn't been so great (life and other things)
