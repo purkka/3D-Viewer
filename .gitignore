@@ -5,3 +5,6 @@
 # Other
 target
 hs_err_pid*
+
+# Large meshes
+resources/*HD*

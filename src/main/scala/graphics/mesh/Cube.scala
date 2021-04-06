@@ -2,7 +2,7 @@ package graphics.mesh
 
 import graphics._
 
-object Cube extends Object(
+object Cube extends Mesh(
     Vector(
         Vec4(0.5, 0.5, 0.5),
         Vec4(-0.5, 0.5, 0.5),

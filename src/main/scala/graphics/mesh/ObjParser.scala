@@ -1,12 +1,12 @@
 package graphics.mesh
-import graphics._
+import graphics.{scene, _}
 
 import scala.jdk.CollectionConverters._
 import java.io.{BufferedReader, FileReader, IOException}
 import scala.collection.mutable.ArrayBuffer
 
 object ObjParser {
-    def loadObject(file: String): Object = {
+    def loadMesh(file: String): Mesh = {
         // TODO: add error handling
 
         val vertices = ArrayBuffer[Vec4]()
@@ -31,7 +31,7 @@ object ObjParser {
             reader.foreach(_.close())
         }
 
-        new Object(vertices.toVector, indices.toVector)
+        new Mesh(vertices.toVector, indices.toVector)
     }
 
     private def addVertex(data: Seq[String]): Vec4 = Vec4.pointFromSeq(data.map(_.toDouble))
