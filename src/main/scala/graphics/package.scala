@@ -1,3 +1,5 @@
+import scalafx.scene.input.{KeyEvent, MouseEvent}
+
 package object graphics {
     type N = Double
 
