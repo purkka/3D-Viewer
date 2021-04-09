@@ -1,5 +1,9 @@
 package graphics.scene
 
-class Camera extends Object {
+import graphics.{Matrix4, N}
 
+class Camera(fov: N) extends Object {
+    def viewMatrix: Matrix4 = (Matrix4.newTranslation(position) * rotation.toRotationMatrix).inverted
+
+    def projectionMatrix(aspectRatio: N): Matrix4 = Matrix4.newPerspective(aspectRatio, fov)
 }

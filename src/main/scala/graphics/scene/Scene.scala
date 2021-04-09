@@ -1,22 +1,22 @@
 package graphics.scene
 
-import graphics.{Matrix4, TransformFunc}
+import graphics.{Canvas, Matrix4, TransformFunc}
 import scalafx.scene.shape.Polygon
 
 import scala.collection.mutable.ArrayBuffer
 import scala.math.toRadians
 
-class Scene(camera: Camera, objects: Vector[Object], transformFunc: TransformFunc) {
-
-
+class Scene(camera: Camera, objects: Vector[Object], canvas: Canvas) {
     def render: ArrayBuffer[Polygon] = {
-        val polygons = ArrayBuffer[Polygon]()
-        val v = Matrix4.newIdentity
-        val p = Matrix4.newPerspective(800.0 / 600.0, toRadians(70))
+        val result = ArrayBuffer[Polygon]()
+        val v = camera.viewMatrix
+        val p = camera.projectionMatrix(canvas.width.toDouble / canvas.height.toDouble)
 
-        for (o <- objects) o.render(polygons, p * v * o.modelMatrix, transformFunc)
+        for (o <- objects) {
+            o.render(result, p * v * o.modelMatrix, canvas.transform)
+        }
 
-        polygons
+        result
     }
 
 }
