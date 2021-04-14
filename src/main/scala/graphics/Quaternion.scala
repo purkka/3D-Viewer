@@ -21,10 +21,6 @@ class Quaternion private(val x: N, val y: N, val z: N, val w: N) {
         q.y * w - q.z * x + q.w * y + q.x * z,
         q.z * w + q.y * x - q.x * y + q.w * z,
         q.w * w - q.x * x - q.y * y - q.z * z,
-//        -q.w * w + q.x * x - q.y * y - q.z * z,
-//        -q.z * w + q.y * x + q.x * y + q.w * z,
-//        q.y * w + q.z * x - q.w * y + q.x * z,
-//        q.x * w + q.w * x + q.z * y - q.y * z,
     )
 
     def toAxisAngle: (Vec4, N) = (Vec4(x, y, z).normalized(), 2 * atan2(Vec4(x, y, z).length, w))

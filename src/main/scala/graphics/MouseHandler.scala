@@ -21,10 +21,9 @@ class MouseHandler(camera: Camera) {
                 cameraStoredY = cameraCurrentY
             case MouseEvent.MouseDragged =>
                 cameraCurrentX = cameraStoredX + (me.x - startEvent.x) * 0.1
-                cameraCurrentY = cameraStoredY + (me.y - startEvent.y) * 0.1
+                cameraCurrentY = (cameraStoredY + (me.y - startEvent.y) * 0.1).clamp(-90, 90)
                 camera.rotation = (Quaternion(Vec4(0, 1, 0), toRadians(cameraCurrentX)) *
                   Quaternion(Vec4(1, 0, 0), toRadians(cameraCurrentY))).normalized()
-//                println(camera.rotation.toAxisAngle)
         }
     }
 }

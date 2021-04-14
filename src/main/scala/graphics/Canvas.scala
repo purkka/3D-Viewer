@@ -12,7 +12,10 @@ class Canvas(width: Int, height: Int, mouseHandler: MouseHandler, keyHandler: Ke
     def transform(w: Vec4): (N, N) = (0.5 * width * (w.x + 1.0), 0.5 * height * (1.0 - w.y))
 
     // TODO: replace polygon with node
-    def draw(nodes: ArrayBuffer[Polygon]): Unit = content = nodes
+    def draw(nodes: RenderQueue): Unit = {
+        val a: Seq[(N, Node)] = nodes.dequeueAll
+        content = a.map(_._2)
+    }
 
     // moving the scene
     onMousePressed = (me: MouseEvent) => mouseHandler.handle(me)

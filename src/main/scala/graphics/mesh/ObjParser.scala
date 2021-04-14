@@ -8,7 +8,6 @@ import scala.collection.mutable.ArrayBuffer
 object ObjParser {
     def loadMesh(file: String): Mesh = {
         // TODO: add error handling
-
         val vertices = ArrayBuffer[Vec4]()
         val indices = ArrayBuffer[Tri]()
 
@@ -38,5 +37,4 @@ object ObjParser {
 
     // Wavefront OBJ indexes from 1 while this application indexes from 0 (thus "- 1")
     private def addIndex(data: Seq[String]): Tri = data.map(_.toInt - 1)
-
 }

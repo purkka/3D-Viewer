@@ -1,7 +1,9 @@
-import graphics.{Matrix4, N}
+import graphics._
 
 object test extends App {
-    // unit tests for matrix inversion
+    val vector = Vec4(1, 2, 3)
+    val vector2 = Vec4(2, 2, 1)
+
     val matrix = new Matrix4(Array(
         1, 0, 0, 1,
         2, 1, 1, 0,
@@ -9,11 +11,16 @@ object test extends App {
         1, 1, 2, 0,
     ))
 
-    // martix x matrix
+    // vector cross product
+    // should be {-4, 5, -2}
+    println(vector cross vector2)
+
+    // matrix * matrix
     // should be {{2, 1, 2, 1}, {7, 1, 2, 2}, {6, 0, 1, 3}, {9, 1, 3, 1}}
     println(matrix * matrix)
 
-    // determinant should be 4
+    // determinant
+    // should be 4
     val det = matrix.det
     assert(det == 4, "Determinant should be 4")
 
