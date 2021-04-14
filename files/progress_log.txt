@@ -47,3 +47,38 @@ WEEKS 11-12
         - While I was working on the project, I realized that this new order seems more natural. The removal of
           of a separate "Point" -class also influenced this decision.
     - made progress, even though my scheduling hasn't been so great (life and other things)
+
+
+WEEKS 13-14
+    - scene implementation
+        - more complete mesh + object implementation
+    - scene + timer update -> main class looks better and is clearer
+    - update matrix class
+        - hardcoded matrix (using aa, ab, ac, ... dd) proved not to be enough -> indexed matrix (using arrays) and
+          added determinant + inversion calculations. These will be used with the camera movement
+        - totally new structure
+    - add camera
+    - add camera movement: WASD directions and EQ up and down. Click and drag to change the direction of the camera
+    - update matrix class (for the second time)
+        - Matrix4 is now an array
+    - Add triangle normals + center calculation
+    - The image only renders triangles facing the camera
+    - Add initial lighting. It is now a directional light from the camera. A fixed light direction will be added later
+
+
+    problems:
+    - the UML is modified again
+        - added MeshObject, Canvas, Timer
+    - some troubles with the mesh-object implementation. It works now well, but future improvements might be necessary
+    - some difficulties with the new matrix implementation -> updated the Matrix4 class twice
+    - the point light will be changed to a directional light as this produces a better-looking end result
+
+    timetable:
+    - changed the order of implementation again
+    - only missing the full directional light and user UI + some comments in the code
+
+
+
+
+
+
