@@ -7,7 +7,6 @@ import scala.collection.mutable.ArrayBuffer
 
 object ObjParser {
     def loadMesh(file: String): Mesh = {
-        // TODO: add error handling
         val vertices = ArrayBuffer[Vec4]()
         val indices = ArrayBuffer[Tri]()
 
@@ -26,15 +25,28 @@ object ObjParser {
         } catch {
             case e: IOException =>
             // ERRORS HERE
+                val objExc = new CorruptedObjFileException("Reading the chess data failed.")
+
+                objExc.initCause(e)
+
+                throw objExc
         } finally {
             reader.foreach(_.close())
         }
 
+        if (vertices.isEmpty || indices.isEmpty) throw new CorruptedObjFileException("Invalid obj file")
+
         new Mesh(vertices.toVector, indices.toVector)
     }
 
-    private def addVertex(data: Seq[String]): Vec4 = Vec4.pointFromSeq(data.map(_.toDouble))
+    private def addVertex(data: Seq[String]): Vec4 = {
+        if (data.length != 3) throw new CorruptedObjFileException("Invalid vertex")
+        Vec4.pointFromSeq(data.map(_.toDouble))
+    }
 
     // Wavefront OBJ indexes from 1 while this application indexes from 0 (thus "- 1")
-    private def addIndex(data: Seq[String]): Tri = data.map(_.toInt - 1)
+    private def addIndex(data: Seq[String]): Tri = {
+        if (data.length != 3) throw new CorruptedObjFileException("Invalid index")
+        data.map(_.toInt - 1)
+    }
 }
