@@ -1,7 +1,11 @@
 import scalafx.application.JFXApp
 import graphics._
 import graphics.mesh._
-import graphics.scene.{Camera, MeshObject}
+import graphics.scene.{AmbientLight, Camera, DirectionalLight, MeshObject, PointLight}
+import scalafx.scene.control.Button
+import scalafx.scene.layout.VBox
+import scalafx.scene.paint.Color
+import scalafx.stage.FileChooser
 
 import scala.math.toRadians
 
@@ -17,11 +21,15 @@ object Main extends JFXApp {
     // click and drag to move camera direction
     val camera = new Camera(toRadians(70))
     val mouseHandler = new MouseHandler(camera)
-
     val keyHandler = new KeyHandler(camera, 1)
 
+    val light0 = new AmbientLight()
+    val light1 = new DirectionalLight(Vec4(-1, -1, 0), Color.Red)
+    val light2 = new DirectionalLight(Vec4(1, -1, 0), Color.Blue)
+    val light3 = new DirectionalLight(Vec4(0, -1, -1), Color.Green)
+
     val canvas = new Canvas(width, height, mouseHandler, keyHandler)
-    val sc = new graphics.scene.Scene(camera, Vector(obj, obj2), canvas)
+    val sc = new graphics.scene.Scene(camera, Vector(obj, obj2), Vector(light0, light1, light2, light3), canvas)
 
     var angle = 0.0
     val rotationalSpeed = 0.8

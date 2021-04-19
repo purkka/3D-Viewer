@@ -7,7 +7,7 @@ import scalafx.scene.shape.Polygon
 import scala.collection.mutable.ArrayBuffer
 
 class MeshObject(mesh: Mesh) extends Object {
-    override def render(target: RenderQueue, mvp: Matrix4, n: Matrix4, transformFunc: TransformFunc, camera: Camera, objPos: Vec4): Unit = {
-        mesh.project(target, mvp, n, transformFunc, camera, objPos)
+    override def render(target: RenderQueue, mvp: Matrix4, n: Matrix4, transformFunc: TransformFunc, lights: Vector[Light], camera: Camera): Unit = {
+        mesh.project(target, mvp, n, transformFunc, lights, camera)
     }
 }

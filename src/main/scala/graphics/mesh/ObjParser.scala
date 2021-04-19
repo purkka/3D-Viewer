@@ -25,7 +25,7 @@ object ObjParser {
         } catch {
             case e: IOException =>
             // ERRORS HERE
-                val objExc = new CorruptedObjFileException("Reading the chess data failed.")
+                val objExc = new CorruptedObjFileException("Reading the obj data failed.")
 
                 objExc.initCause(e)
 

@@ -6,7 +6,7 @@ import scalafx.scene.shape.Polygon
 
 import scala.collection.mutable
 
-class Scene(camera: Camera, objects: Vector[Object], canvas: Canvas) {
+class Scene(camera: Camera, objects: Vector[Object], lights: Vector[Light], canvas: Canvas) {
     val result = new mutable.PriorityQueue[(N, Node)]()(Ordering.by(t => t._1))
 
     def render: RenderQueue = {
@@ -14,7 +14,7 @@ class Scene(camera: Camera, objects: Vector[Object], canvas: Canvas) {
         val p = camera.projectionMatrix(canvas.width.toDouble / canvas.height.toDouble)
 
         for (o <- objects) {
-            o.render(result, p * v * o.modelMatrix, o.modelMatrix, canvas.transform, camera)
+            o.render(result, p * v * o.modelMatrix, o.modelMatrix, canvas.transform, lights, camera)
         }
 
         result
