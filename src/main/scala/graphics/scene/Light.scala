@@ -5,5 +5,5 @@ import scalafx.scene.paint.Color
 
 trait Light {
     def incidence(position: Vec4, normal: Vec4): N
-    def color: Color
+    var color: Color
 }
