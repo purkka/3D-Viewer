@@ -6,5 +6,7 @@
 target
 hs_err_pid*
 
-# Large meshes
+# Large/other meshes
 resources/*HD*
+resources/ImATeapot.obj
+resources/moo.obj
