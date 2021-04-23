@@ -23,10 +23,7 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
             val center = points.reduce(_ + _) / i.length
             val centerNormal = normalProjection * center
             val n = (pointsNormal(1) - pointsNormal.head).cross(pointsNormal(2) - pointsNormal.head).normalized() // normal vector
-//            val d = n.dot((camera.position - centerNormal).normalized()) // dot product (angle)
-//            val l = n.dot((/*light*/ Vec4(0, 10, 0) - centerNormal).normalized()) // light angle
             val d = angle(n, camera.position, centerNormal)
-//            val l = angle(n, Vec4(0, 1, 0), centerNormal)
 
 
             if (d > 0 && pointsNormal.forall(inViewingFrustum(_, camera))) {
@@ -44,13 +41,6 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
                 }
 
                 def cclamp(c: Int): Int = math.max(0, math.min(255, c)) // color clamp
-//                def cclamp(c: Int): Int = (math.max(l, 0) * math.max(0, math.min(255, c / lightSources.size))).toInt + 35 // color clamp
-
-//                val color = Color.rgb(cclamp(red), cclamp(green), cclamp(blue))
-
-
-//                val colorValue = (math.max(l, 0) * 120).toInt + 35
-//                val color = Color.rgb(colorValue, colorValue, colorValue)
 
                 val finalColor = Color.rgb(cclamp(color.x.toInt), cclamp(color.y.toInt), cclamp(color.z.toInt))
 
