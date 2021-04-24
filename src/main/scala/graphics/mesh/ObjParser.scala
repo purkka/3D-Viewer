@@ -24,11 +24,8 @@ object ObjParser {
             }
         } catch {
             case e: IOException =>
-            // ERRORS HERE
                 val objExc = new CorruptedObjFileException("Reading the obj data failed.")
-
                 objExc.initCause(e)
-
                 throw objExc
         } finally {
             reader.foreach(_.close())

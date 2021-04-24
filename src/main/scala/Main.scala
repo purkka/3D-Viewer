@@ -13,8 +13,6 @@ import java.io.File
 import scala.math.toRadians
 
 object Main extends JFXApp {
-    var obj = new MeshObject(Cube)
-
     // click and drag to move camera direction
     val camera = new Camera(toRadians(70))
     camera.position = Vec4(0, 0, 3)
@@ -22,9 +20,10 @@ object Main extends JFXApp {
     val keyHandler = new KeyHandler(camera, 1)
 
     val light0 = new AmbientLight()
-    val light1 = new DirectionalLight(Vec4(-1, -1, -1), Color.rgb(220, 220, 220))
-    val light2 = new PointLight(Vec4(-5, 0, 0), Color.Blue)
+    val light1 = new DirectionalLight(Vec4(-1, -1, -1), Color.LightGray)
+    val light2 = new PointLight(Vec4(-5, 0, 0), Color.Black)
 
+    var obj = new MeshObject(Cube)
     val canvas = new Canvas(900, 600, mouseHandler, keyHandler)
     val sc = new graphics.scene.Scene(camera, Vector(obj), Vector(light0, light1, light2), canvas)
 
@@ -41,7 +40,6 @@ object Main extends JFXApp {
         canvas.draw(sc.render)
     })
 
-
     val fc = new FileChooser()
     val initPath = new File(System.getProperty("user.dir"), "resources")
     if (initPath.isDirectory) fc.setInitialDirectory(initPath)
@@ -51,12 +49,12 @@ object Main extends JFXApp {
         if (selectedFile != null) {
             try {
                 obj = new MeshObject(ObjParser.loadMesh(selectedFile.getAbsolutePath))
+                sc.objects = Vector(obj)
+                angle = 0.0
             } catch {
                 case oe: CorruptedObjFileException =>
                     new ExceptionDialog(AlertType.Error, oe)
             }
-            sc.objects = Vector(obj)
-            angle = 0.0
         }
     })
 

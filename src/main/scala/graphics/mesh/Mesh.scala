@@ -65,8 +65,8 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
     }
 
     def validateIndices(): Unit = {
-        assert(indices.forall(_.length == 3), "All indices must be of length 3")
-        assert(indices.forall(_.forall(i => 0 <= i && i < vertices.length)), "Indices must point to existing triangles")
+        if (indices.exists(_.length != 3)) throw new CorruptedObjFileException("All indices must be of length 3")
+        if (indices.exists(_.exists(i => i < 0 || i >= vertices.length))) throw new CorruptedObjFileException("Indices must point to existing triangles")
     }
 
     validateIndices()
