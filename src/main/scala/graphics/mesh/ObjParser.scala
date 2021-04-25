@@ -1,5 +1,6 @@
 package graphics.mesh
-import graphics.{scene, _}
+
+import graphics._
 
 import scala.jdk.CollectionConverters._
 import java.io.{BufferedReader, FileReader, IOException}

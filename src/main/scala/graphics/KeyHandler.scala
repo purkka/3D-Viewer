@@ -6,7 +6,7 @@ import scalafx.scene.input.{KeyCode, KeyEvent}
 import scala.collection.mutable
 
 class KeyHandler(camera: Camera, velocity: Double) {
-    val keyStates: mutable.Map[KeyCode, Boolean] = mutable.HashMap[KeyCode, Boolean]().withDefaultValue(false)
+    private val keyStates: mutable.Map[KeyCode, Boolean] = mutable.HashMap[KeyCode, Boolean]().withDefaultValue(false)
 
     def handle(ke: KeyEvent): Unit = ke.eventType match {
         case KeyEvent.KeyPressed => keyStates(ke.code) = true

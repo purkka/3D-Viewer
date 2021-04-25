@@ -6,10 +6,10 @@ import scalafx.scene.input.MouseEvent
 import scala.math.toRadians
 
 class MouseHandler(camera: Camera) {
-    var cameraStoredX = 0.0
-    var cameraStoredY = 0.0
-    var cameraCurrentX = 0.0
-    var cameraCurrentY = 0.0
+    private var cameraStoredX = 0.0
+    private var cameraStoredY = 0.0
+    private var cameraCurrentX = 0.0
+    private var cameraCurrentY = 0.0
 
     private var startEvent = new MouseEvent(null)
 

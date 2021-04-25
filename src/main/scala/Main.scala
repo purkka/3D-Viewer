@@ -19,17 +19,17 @@ object Main extends JFXApp {
     val mouseHandler = new MouseHandler(camera)
     val keyHandler = new KeyHandler(camera, 1)
 
-    val light0 = new AmbientLight()
-    val light1 = new DirectionalLight(Vec4(-1, -1, -1), Color.LightGray)
-    val light2 = new PointLight(Vec4(-5, 0, 0), Color.Black)
+    private val light0 = new AmbientLight()
+    private val light1 = new DirectionalLight(Vec4(-1, -1, -1), Color.LightGray)
+    private val light2 = new PointLight(Vec4(-5, 0, 0), Color.Black)
 
     var obj = new MeshObject(Cube)
     val canvas = new Canvas(900, 600, mouseHandler, keyHandler)
     val sc = new graphics.scene.Scene(camera, Vector(obj), Vector(light0, light1, light2), canvas)
 
-    var angle = 0.0
-    val rotationalSpeed = 0.8
-    var rotation = true
+    private var angle = 0.0
+    private val rotationalSpeed = 0.8
+    private var rotation = true
 
     val timer = new Timer(delta => {
         if (rotation) {
@@ -41,8 +41,9 @@ object Main extends JFXApp {
     })
 
     val fc = new FileChooser()
-    val initPath = new File(System.getProperty("user.dir"), "resources")
+    private val initPath = new File(System.getProperty("user.dir"), "resources")
     if (initPath.isDirectory) fc.setInitialDirectory(initPath)
+
     val fileButton = new Button("Select OBJ file")
     fileButton.setOnAction(_ => {
         val selectedFile = fc.showOpenDialog(stage)
@@ -73,17 +74,18 @@ object Main extends JFXApp {
     val cs2Label = new Label("Adjust point light")
     cs2Label.setStyle("-fx-font-weight: bold")
 
-    val vhbox = new VBox(fileButton, rotationButton)
+    private val vhbox = new VBox(fileButton, rotationButton)
     vhbox.setPadding(new Insets(20, 10, 20, 10))
     vhbox.setSpacing(10)
-    val vboxcs1 = new VBox(cs1Label, colorSlider1)
+    private val vboxcs1 = new VBox(cs1Label, colorSlider1)
     vboxcs1.setSpacing(5)
-    val vboxcs2 = new VBox(cs2Label, colorSlider2)
+    private val vboxcs2 = new VBox(cs2Label, colorSlider2)
     vboxcs2.setSpacing(5)
-    val hbox = new HBox(vhbox, vboxcs1, vboxcs2)
+    private val hbox = new HBox(vhbox, vboxcs1, vboxcs2)
     hbox.setPadding(new Insets(10, 10, 10, 10))
     hbox.setSpacing(10)
-    val vbox = new VBox(canvas, hbox)
+    private val vbox = new VBox(canvas, hbox)
+
     val scc = new scalafx.scene.Scene(vbox)
 
     // for the animation

@@ -34,7 +34,7 @@ class Matrix4(data: Array[N]) {
     def *(n: N): Matrix4 = new Matrix4(data.map(_ * n))
 
 
-    def det3: N =
+    private def det3: N =
         this (0, 0) * this (1, 1) * this (2, 2) - this (0, 0) * this (1, 2) * this (2, 1) +
           this (1, 0) * this (2, 1) * this (0, 2) - this (1, 0) * this (2, 2) * this (0, 1) +
           this (2, 0) * this (0, 1) * this (1, 2) - this (2, 0) * this (0, 2) * this (1, 1)
@@ -54,7 +54,7 @@ class Matrix4(data: Array[N]) {
         result
     }
 
-    def rcp(a: N): N = if (a != 0.0) 1.0 / a else 0.0
+    private def rcp(a: N): N = if (a != 0.0) 1.0 / a else 0.0
 
     def inverted: Matrix4 = {
         val r = Matrix4.newZero()

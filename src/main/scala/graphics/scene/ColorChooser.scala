@@ -19,11 +19,11 @@ abstract class ColorChooser(initialColor: Color) extends GridPane {
 
     val colorPatch = new Pane()
 
-    val c1 = new ColumnConstraints()
+    private val c1 = new ColumnConstraints()
     c1.setPercentWidth(40)
-    val c2 = new ColumnConstraints()
+    private val c2 = new ColumnConstraints()
     c2.setPercentWidth(40)
-    val c3 = new ColumnConstraints()
+    private val c3 = new ColumnConstraints()
     c3.setPercentWidth(20)
 
     this.getColumnConstraints.addAll(c1, c2, c3)

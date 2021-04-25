@@ -14,7 +14,7 @@ class Quaternion private(val x: N, val y: N, val z: N, val w: N) {
 
     def normalized(): Quaternion = this / length
 
-    def /(value: N): Quaternion = new Quaternion(x / value, y / value, z / value, w / value)
+    def /(n: N): Quaternion = new Quaternion(x / n, y / n, z / n, w / n)
 
     def *(q: Quaternion) = new Quaternion(
         q.x * w + q.w * x + q.z * y - q.y * z,

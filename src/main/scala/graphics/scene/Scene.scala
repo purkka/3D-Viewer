@@ -5,7 +5,7 @@ import scalafx.scene.Node
 import scala.collection.mutable
 
 class Scene(camera: Camera, var objects: Vector[Object], lights: Vector[Light], canvas: Canvas) {
-    val result = new mutable.PriorityQueue[(N, Node)]()(Ordering.by(t => t._1))
+    private val result = new mutable.PriorityQueue[(N, Node)]()(Ordering.by(t => t._1))
 
     def render: RenderQueue = {
         val v = camera.viewMatrix

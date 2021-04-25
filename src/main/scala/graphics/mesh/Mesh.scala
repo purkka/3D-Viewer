@@ -1,7 +1,7 @@
 package graphics.mesh
 
 import graphics._
-import graphics.scene.{Camera, DirectionalLight, Light}
+import graphics.scene.{Camera, Light}
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Polygon
 
@@ -11,7 +11,6 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
     // temporary color list for testing
     val colorList: Seq[Color] = AllColors.allColors().asScala.map(c => new Color(c)).toSeq
 
-    // ArrayBuffer for performance reasons
     def project(target: RenderQueue, projection: Matrix4, normalProjection: Matrix4, transform: TransformFunc,
                 lights: Vector[Light], camera: Camera): Unit = {
 
@@ -58,13 +57,13 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
     }
 
     // frustum culling of near clipping plane
-    def inViewingFrustum(point: Vec4, camera: Camera): Boolean = {
+    private def inViewingFrustum(point: Vec4, camera: Camera): Boolean = {
         val cameraBase = camera.rotation.toRotationMatrix
         val back = Vec4(cameraBase(2, 0), cameraBase(2, 1), cameraBase(2, 2))
         (point - camera.position).dot(back) / back.dot(back) < 0
     }
 
-    def validateIndices(): Unit = {
+    private def validateIndices(): Unit = {
         if (indices.exists(_.length != 3)) throw new CorruptedObjFileException("All indices must be of length 3")
         if (indices.exists(_.exists(i => i < 0 || i >= vertices.length))) throw new CorruptedObjFileException("Indices must point to existing triangles")
     }
