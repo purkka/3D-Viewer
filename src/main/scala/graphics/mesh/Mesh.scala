@@ -5,12 +5,7 @@ import graphics.scene.{Camera, Light}
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Polygon
 
-import scala.jdk.CollectionConverters._
-
 class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
-    // temporary color list for testing
-    val colorList: Seq[Color] = AllColors.allColors().asScala.map(c => new Color(c)).toSeq
-
     def project(target: RenderQueue, projection: Matrix4, normalProjection: Matrix4, transform: TransformFunc,
                 lights: Vector[Light], camera: Camera): Unit = {
 
@@ -22,7 +17,7 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
             val center = points.reduce(_ + _) / i.length
             val centerNormal = normalProjection * center
             val n = (pointsNormal(1) - pointsNormal.head).cross(pointsNormal(2) - pointsNormal.head).normalized() // normal vector
-            val d = angle(n, camera.position, centerNormal)
+            val d = angle(n, camera.position, centerNormal) // dot product
 
 
             if (d > 0 && pointsNormal.forall(inViewingFrustum(_, camera))) {
@@ -39,11 +34,11 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
                     color = color + lc * mult
                 }
 
-                def cclamp(c: Int): Int = math.max(0, math.min(255, c)) // color clamp
+                def cclamp(c: Int): Int = c.clamp(0, 255) // color clamp
 
                 val finalColor = Color.rgb(cclamp(color.x.toInt), cclamp(color.y.toInt), cclamp(color.z.toInt))
 
-                p.stroke = finalColor
+                p.stroke = finalColor // otherwise there are gaps in the object
                 p.fill = finalColor
                 target.enqueue(((camera.position - centerNormal).length, p))
 
