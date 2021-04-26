@@ -23,6 +23,9 @@ case class Vec4(x: N, y: N, z: N, w: N = 1) {
     def dot(v: Vec4): N = x * v.x + y * v.y + z * v.z
 
     def cross(v: Vec4): Vec4 = Vec4(v.z * y - v.y * z, -v.z * x + v.x * z, v.y * x - v.x * y, 0)
+
+    // for testing
+    def toVector: Vector[N] = Vector(x, y, z, w)
 }
 
 object Vec4 {

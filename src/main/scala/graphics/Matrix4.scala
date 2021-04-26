@@ -78,6 +78,8 @@ class Matrix4(data: Array[N]) {
         r * rcp(d) * 4
     }
 
+    // for testing
+    def toVector: Vector[N] = data.toVector
     override def toString: String = data.toVector.toString()
 }
 
