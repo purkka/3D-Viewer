@@ -76,9 +76,3 @@ WEEKS 13-14
     timetable:
     - changed the order of implementation again
     - only missing the full directional light and user UI + some comments in the code
-
-
-
-
-
-

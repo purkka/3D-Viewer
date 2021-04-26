@@ -1,7 +1,4 @@
 import scalafx.scene.Node
-import scalafx.scene.input.{KeyEvent, MouseEvent}
-import scalafx.scene.shape.Polygon
-
 import scala.collection.mutable
 
 package object graphics {
@@ -15,5 +12,9 @@ package object graphics {
 
     implicit class NClamp(n: N) {
         def clamp(min: N, max: N): N = math.max(min, math.min(max, n))
+    }
+
+    implicit class IntClamp(n: Int) {
+        def clamp(min: Int, max: Int): Int = math.max(min, math.min(max, n))
     }
 }
