@@ -41,12 +41,6 @@ class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
                 p.stroke = finalColor // otherwise there are gaps in the object
                 p.fill = finalColor
                 target.enqueue(((camera.position - centerNormal).length, p))
-
-                // testing triangle centers
-//                val cp = projection * center
-//                val a = transform(cp / cp.w)
-//                val cir = Circle(a._1, a._2, 2, Color.LimeGreen)
-//                target.enqueue((Double.NegativeInfinity, cir))
             }
         }
     }
