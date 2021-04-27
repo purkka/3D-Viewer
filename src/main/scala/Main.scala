@@ -5,11 +5,12 @@ import graphics.scene._
 import javafx.geometry.Insets
 import scalafx.scene.control.Alert.AlertType
 import scalafx.scene.control.{Button, Label}
+import scalafx.scene.image.Image
 import scalafx.scene.layout.{HBox, VBox}
 import scalafx.scene.paint.Color
 import scalafx.stage.FileChooser
 
-import java.io.File
+import java.io.{File, FileInputStream}
 import scala.math.toRadians
 
 object Main extends JFXApp {
@@ -94,6 +95,7 @@ object Main extends JFXApp {
         scene = scc
     }
 
+    stage.icons.add(new Image(new FileInputStream("files/3Dlogo.png")))
     stage.setResizable(false)
 
     timer.start()
