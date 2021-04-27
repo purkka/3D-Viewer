@@ -82,7 +82,7 @@ object Main extends JFXApp {
     vboxcs1.setSpacing(5)
     private val vboxcs2 = new VBox(cs2Label, colorSlider2)
     vboxcs2.setSpacing(5)
-    private val hbox = new HBox(vhbox, vboxcs1, vboxcs2)
+    private val hbox = new HBox(vhbox, vboxcs2, vboxcs1)
     hbox.setPadding(new Insets(10, 10, 10, 10))
     hbox.setSpacing(10)
     private val vbox = new VBox(canvas, hbox)
