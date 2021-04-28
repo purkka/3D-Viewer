@@ -4,6 +4,9 @@ import graphics._
 import scalafx.scene.Node
 import scala.collection.mutable
 
+/**
+ * This class renders a scene according to its contents.
+ * */
 class Scene(camera: Camera, var objects: Vector[Object], lights: Vector[Light], canvas: Canvas) {
     private val result = new mutable.PriorityQueue[(N, Node)]()(Ordering.by(t => t._1))
 

@@ -2,6 +2,9 @@ package graphics.mesh
 
 import graphics._
 
+/**
+ * A hard coded demo object, a cube. This is also the default object.
+ * */
 object Cube extends Mesh(
     Vector(
         Vec4(0.5, 0.5, -0.5),

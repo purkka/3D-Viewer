@@ -5,6 +5,9 @@ import scalafx.scene.input.MouseEvent
 
 import scala.math.toRadians
 
+/**
+ * This helper class turns mouse events into camera rotations.
+ * */
 class MouseHandler(camera: Camera) {
     private var cameraStoredX = 0.0
     private var cameraStoredY = 0.0

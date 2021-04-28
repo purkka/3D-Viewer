@@ -2,6 +2,9 @@ package graphics.mesh
 
 import graphics._
 
+/**
+ * A hard coded demo object, a triangle.
+ * */
 object Triangle extends Mesh(
     Vector(
         Vec4(1, 0, 0),

@@ -1,6 +1,9 @@
 import scalafx.scene.Node
 import scala.collection.mutable
 
+/**
+ * A package object containing type definitions used in the program.
+ * */
 package object graphics {
     type N = Double
 

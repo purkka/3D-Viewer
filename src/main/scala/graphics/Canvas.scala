@@ -5,7 +5,9 @@ import scalafx.Includes._
 import scalafx.scene.input.{KeyEvent, MouseEvent}
 import scalafx.scene.paint.Color
 
-
+/**
+ * This class contains a canvas onto which a scene is projected.
+ * */
 class Canvas(width: Int, height: Int, mouseHandler: MouseHandler, keyHandler: KeyHandler) extends SubScene(width, height) {
     fill = Color.Black
 

@@ -2,6 +2,9 @@ package graphics
 
 import scalafx.animation.AnimationTimer
 
+/**
+ * A timer for animating a scene.
+ * */
 class Timer(callback: Double => Unit) {
     private var lastTime = 0L
     private val timer: AnimationTimer = AnimationTimer(t => {

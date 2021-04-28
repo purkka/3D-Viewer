@@ -4,6 +4,9 @@ import graphics.scene.MeshObject
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
+/**
+ * These unit tests check the matrices' and vectors' arithmetic operations and thrown errors.
+ * */
 class UnitTests extends AnyFlatSpec with Matchers {
     val vector: Vec4 = Vec4(1, 2, 3)
     val vector2: Vec4 = Vec4(2, 2, 1)

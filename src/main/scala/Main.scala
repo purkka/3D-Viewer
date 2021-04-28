@@ -13,6 +13,9 @@ import scalafx.stage.FileChooser
 import java.io.{File, FileInputStream}
 import scala.math.toRadians
 
+/**
+ * This is the main class running the application.
+ * */
 object Main extends JFXApp {
     // click and drag to move camera direction
     val camera = new Camera(toRadians(70))
@@ -20,14 +23,16 @@ object Main extends JFXApp {
     val mouseHandler = new MouseHandler(camera)
     val keyHandler = new KeyHandler(camera, 1)
 
+    // the scene's lights
     private val light0 = new AmbientLight()
     private val light1 = new DirectionalLight(Vec4(-1, -1, -1), Color.LightGray)
     private val light2 = new PointLight(Vec4(-5, 0, 0), Color.Black)
 
-    var obj = new MeshObject(Cube)
+    var obj = new MeshObject(Cube) // default object
     val canvas = new Canvas(900, 600, mouseHandler, keyHandler)
-    val sc = new graphics.scene.Scene(camera, Vector(obj), Vector(light0, light1, light2), canvas)
+    val sc = new graphics.scene.Scene(camera, Vector(obj), Vector(light0, light1, light2), canvas) // virtual scene
 
+    // for animating the scene
     private var angle = 0.0
     private val rotationalSpeed = 0.8
     private var rotation = true
@@ -41,6 +46,7 @@ object Main extends JFXApp {
         canvas.draw(sc.render)
     })
 
+    // choose file button
     val fc = new FileChooser()
     private val initPath = new File(System.getProperty("user.dir"), "resources")
     if (initPath.isDirectory) fc.setInitialDirectory(initPath)
@@ -60,9 +66,11 @@ object Main extends JFXApp {
         }
     })
 
+    // toggle rotation button
     val rotationButton = new Button("Toggle rotation")
     rotationButton.setOnAction(_ => rotation = !rotation)
 
+    // color sliders for the lights
     val colorSlider1: ColorChooser = new ColorChooser(Color.LightGray) {
         def update(c: Color): Unit = light1.color = c
     }
@@ -70,11 +78,13 @@ object Main extends JFXApp {
         def update(c: Color): Unit = light2.color = c
     }
 
+    // GUI text
     val cs1Label = new Label("Adjust directional light")
     cs1Label.setStyle("-fx-font-weight: bold")
     val cs2Label = new Label("Adjust point light")
     cs2Label.setStyle("-fx-font-weight: bold")
 
+    // GUI layout
     private val vhbox = new VBox(fileButton, rotationButton)
     vhbox.setPadding(new Insets(20, 10, 20, 10))
     vhbox.setSpacing(10)
@@ -89,7 +99,7 @@ object Main extends JFXApp {
 
     val scc = new scalafx.scene.Scene(vbox)
 
-    // for the animation
+    // main stage
     stage = new JFXApp.PrimaryStage {
         title.value = "3D Object Viewer"
         scene = scc

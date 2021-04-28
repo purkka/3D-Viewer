@@ -5,6 +5,9 @@ import scalafx.scene.input.{KeyCode, KeyEvent}
 
 import scala.collection.mutable
 
+/**
+ * This helper class turns key events into camera movements.
+ * */
 class KeyHandler(camera: Camera, velocity: Double) {
     private val keyStates: mutable.Map[KeyCode, Boolean] = mutable.HashMap[KeyCode, Boolean]().withDefaultValue(false)
 

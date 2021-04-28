@@ -3,6 +3,9 @@ package graphics.scene
 import graphics.{N, Vec4}
 import scalafx.scene.paint.Color
 
+/**
+ * A directional light.
+ * */
 class DirectionalLight(direction: Vec4, override var color: Color) extends Light {
     private val dirNorm = direction.normalized()
 

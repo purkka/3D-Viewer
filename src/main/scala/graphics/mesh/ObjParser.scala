@@ -6,6 +6,9 @@ import scala.jdk.CollectionConverters._
 import java.io.{BufferedReader, FileReader, IOException}
 import scala.collection.mutable.ArrayBuffer
 
+/**
+ * This object parser parses a file and turns it into a mesh.
+ * */
 object ObjParser {
     def loadMesh(file: String): Mesh = {
         if (file.takeRight(4) != ".obj") throw new CorruptedObjFileException("Invalid file format")

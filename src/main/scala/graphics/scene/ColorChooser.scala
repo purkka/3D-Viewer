@@ -4,6 +4,9 @@ import scalafx.scene.control.{Label, Slider}
 import scalafx.scene.layout.{ColumnConstraints, GridPane, Pane}
 import scalafx.scene.paint.Color
 
+/**
+ * RGB color slider for adjusting the scene's lights' colors. The colors mix additively.
+ * */
 abstract class ColorChooser(initialColor: Color) extends GridPane {
     val redSlider = new Slider(0, 1, initialColor.getRed)
     val greenSlider = new Slider(0, 1, initialColor.getGreen)

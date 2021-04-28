@@ -2,6 +2,9 @@ package graphics.scene
 
 import graphics._
 
+/**
+ * A thing in the virtual scene. This includes both the camera and possible 3D objects.
+ * */
 abstract class Object {
     var position: Vec4 = Vec4(0, 0, 0)
     var rotation: Quaternion = Quaternion(Vec4(1, 0, 0), 0)

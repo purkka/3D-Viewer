@@ -5,13 +5,16 @@ import graphics.scene.{Camera, Light}
 import scalafx.scene.paint.Color
 import scalafx.scene.shape.Polygon
 
+/**
+ * A mesh contains the vertices and indices to form a 3D object.
+ * */
 class Mesh(vertices: Vector[Vec4], indices: Vector[Tri]) {
     def project(target: RenderQueue, projection: Matrix4, normalProjection: Matrix4, transform: TransformFunc,
                 lights: Vector[Light], camera: Camera): Unit = {
 
         def angle(n: Vec4, e: Vec4, c: Vec4): N = n.dot((e - c).normalized())
 
-        for ((i, c) <- indices.zipWithIndex) {
+        for (i <- indices) {
             val points = i.map(vertices)
             val pointsNormal = points.map(normalProjection * _)
             val center = points.reduce(_ + _) / i.length

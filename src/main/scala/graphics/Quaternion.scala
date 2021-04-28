@@ -2,6 +2,9 @@ package graphics
 
 import scala.math._
 
+/**
+ * This engine handles rotations with quaternions.
+ * */
 class Quaternion private(val x: N, val y: N, val z: N, val w: N) {
     def toRotationMatrix: Matrix4 = new Matrix4(Array(
         1 - 2 * y * y - 2 * z * z,  2 * x * y - 2 * z * w,      2 * x * z + 2 * y * w,      0,
