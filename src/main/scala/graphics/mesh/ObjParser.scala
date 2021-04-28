@@ -8,6 +8,8 @@ import scala.collection.mutable.ArrayBuffer
 
 object ObjParser {
     def loadMesh(file: String): Mesh = {
+        if (file.takeRight(4) != ".obj") throw new CorruptedObjFileException("Invalid file format")
+
         val vertices = ArrayBuffer[Vec4]()
         val indices = ArrayBuffer[Tri]()
 
@@ -25,7 +27,7 @@ object ObjParser {
             }
         } catch {
             case e: IOException =>
-                val objExc = new CorruptedObjFileException("Reading the obj data failed.")
+                val objExc = new CorruptedObjFileException("Reading the obj data failed")
                 objExc.initCause(e)
                 throw objExc
         } finally {
