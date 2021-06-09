@@ -5,12 +5,13 @@ import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 /**
- * These unit tests check the matrices' and vectors' arithmetic operations and thrown errors.
+ * Uint tests to check the arithmetic operations for vectors and matrices as well as thrown errors.
  * */
 class UnitTests extends AnyFlatSpec with Matchers {
+
+    /** Vectors and a matrix used in the testing. */
     val vector: Vec4 = Vec4(1, 2, 3)
     val vector2: Vec4 = Vec4(2, 2, 1)
-
     val matrix = new Matrix4(Array(
         1, 0, 0, 1,
         2, 1, 1, 0,
@@ -18,8 +19,9 @@ class UnitTests extends AnyFlatSpec with Matchers {
         1, 1, 2, 0
     ))
 
-    def e(a: N, b: N, error: N = 0.001):Boolean = a <= b + error && a >= b - error // equal with slight error
-    def fa(in: Vector[(N, N)]): Boolean = in.forall({case (a, b) => e(a, b)}) // forall: tuple elements equal
+    /** Helper methods to make testing with errors easier. */
+    private def e(a: N, b: N, error: N = 0.001):Boolean = a <= b + error && a >= b - error // equality with an error
+    private def fa(in: Vector[(N, N)]): Boolean = in.forall({case (a, b) => e(a, b)}) // forall: tuple elements are equal
 
     "Matrix(column, row)" should "return element" in {
         matrix(0, 2) should be (3)
@@ -86,6 +88,7 @@ class UnitTests extends AnyFlatSpec with Matchers {
         assert(fa(vcross.toVector.zip(Vec4(-4, 5, -2, 0).toVector)))
     }
 
+    /** Thrown errors */
     "Parsing invalid files" should "throw an error" in {
         assertThrows[CorruptedObjFileException] {
             new MeshObject(ObjParser.loadMesh("resources/invalidObjects/invalidCube1.obj"))
