@@ -9,4 +9,6 @@ scene freely.
 This was initially a project for a university course.
 
 Special thanks to [@twelho](https://github.com/twelho) for guiding me 
-throughout this project! 
+throughout this project!
+
+![The opening scene](files/example.png)
